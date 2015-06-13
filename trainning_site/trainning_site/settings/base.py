@@ -24,8 +24,14 @@ LANGUAGES = (
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '#v+99+abve=)d4lmuq7h2qe-yh8$voqii5*9+uu9a(t670+$bf'
 
+
+#==============================================================================
+# Installed Apps
+#==============================================================================
+
+
 INSTALLED_APPS = (
-    # 'trainning_site.apps.',
+    'trainning_site.apps.trainning',
 
     #'south',
 
@@ -68,6 +74,12 @@ else:
 if not os.path.exists(VAR_ROOT):
     os.mkdir(VAR_ROOT)
 
+
+sys.path.insert(1, PROJECT_DIR) 
+sys.path.insert(2, os.path.join(PROJECT_DIR, "apps")) 
+sys.path.insert(3, os.path.join(PROJECT_DIR, "lib")) 
+sys.path.insert(3, os.path.join(PROJECT_DIR, "uploads")) 
+
 #==============================================================================
 # Project URLS and media settings
 #==============================================================================
@@ -88,6 +100,9 @@ STATICFILES_DIRS = (
     os.path.join(PROJECT_DIR, 'static'),
 )
 
+
+
+
 #==============================================================================
 # Templates
 #==============================================================================
@@ -104,6 +119,14 @@ TEMPLATE_CONTEXT_PROCESSORS += (
 #==============================================================================
 
 MIDDLEWARE_CLASSES += (
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
 )
 
 #==============================================================================
