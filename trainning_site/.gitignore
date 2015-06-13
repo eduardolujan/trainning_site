@@ -1,0 +1,5 @@
+*.pyc
+*.egg-info
+trainning_site/settings/local.py
+trainning_site/settings/local/*
+docs/_build
