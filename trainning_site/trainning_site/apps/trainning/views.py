@@ -9,3 +9,10 @@ def test(request):
 
 
 
+
+
+def login(request):
+	return HttpResponse('ok')
+
+
+

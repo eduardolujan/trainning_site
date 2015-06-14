@@ -53,7 +53,9 @@ import os
 import sys
 import trainning_site as project_module
 
-PROJECT_DIR = os.path.dirname(os.path.realpath(project_module.__file__))
+PROJECT_DIR , PROJECT_MODULE_NAME = os.path.split(os.path.dirname(os.path.realpath(project_module.__file__)))
+if not PROJECT_DIR in sys.path:
+  sys.path.insert(0, PROJECT_DIR)
 
 PYTHON_BIN = os.path.dirname(sys.executable)
 ve_path = os.path.dirname(os.path.dirname(os.path.dirname(PROJECT_DIR)))
@@ -75,10 +77,39 @@ if not os.path.exists(VAR_ROOT):
     os.mkdir(VAR_ROOT)
 
 
-sys.path.insert(1, PROJECT_DIR) 
-sys.path.insert(2, os.path.join(PROJECT_DIR, "apps")) 
-sys.path.insert(3, os.path.join(PROJECT_DIR, "lib")) 
-sys.path.insert(3, os.path.join(PROJECT_DIR, "uploads")) 
+SQLITE_DB_ROOT = os.path.join(PROJECT_DIR, 'db')
+if not os.path.exists(SQLITE_DB_ROOT):
+    os.mkdir(SQLITE_DB_ROOT)
+
+
+# Add the 'wis' dir to the python path
+MODULE_DIR = os.path.join(PROJECT_DIR, PROJECT_MODULE_NAME)
+if not MODULE_DIR in sys.path:
+    sys.path.insert(1, MODULE_DIR)
+
+# Add the 'apps' dir to the python path
+APPS_DIR = os.path.join(MODULE_DIR, 'apps')
+if not APPS_DIR in sys.path:
+    sys.path.insert(2, APPS_DIR)
+
+# Add the 'lib' dir to the python path
+LIB_DIR = os.path.join(MODULE_DIR, 'lib')
+if not LIB_DIR in sys.path:
+    sys.path.insert(3, LIB_DIR)
+
+UPLOADS = os.path.join(PROJECT_DIR, "uploads")
+if not LIB_DIR in sys.path:
+    sys.path.insert(3, UPLOADS)
+
+
+
+#sys.path.insert(1, PROJECT_DIR) 
+#sys.path.insert(2, os.path.join(PROJECT_DIR, "apps")) 
+#sys.path.insert(3, os.path.join(PROJECT_DIR, "lib")) 
+#sys.path.insert(3, os.path.join(PROJECT_DIR, "uploads")) 
+
+
+
 
 #==============================================================================
 # Project URLS and media settings
@@ -136,6 +167,9 @@ MIDDLEWARE_CLASSES += (
 
 AUTHENTICATION_BACKENDS += (
 )
+
+
+AUTH_USER_MODEL = 'trainning.SystemUser'
 
 #==============================================================================
 # Miscellaneous project settings

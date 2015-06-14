@@ -10,6 +10,6 @@ admin.autodiscover()
 urlpatterns = patterns('',
 
 	url(r'^test/?$','apps.trainning.views.test', name='test'),
-	url(r'^login/?$',TemplateView.as_view(template_name="trainning/login.html")),
+	url(r'^login/?$','apps.trainning.views.login', name='login'),
 	
 )
