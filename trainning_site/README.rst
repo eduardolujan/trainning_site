@@ -1,7 +1,11 @@
 .. 
 
-trainning_site
+Trainning Site
 ======================
+
+
+Sitio de Administracion de Bujutsu.tv
+----------
 
 Quickstart
 ----------
