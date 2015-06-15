@@ -129,8 +129,10 @@ MEDIA_ROOT = os.path.join(VAR_ROOT, 'uploads')
 
 
 STATICFILES_DIRS = (
-    os.path.join(PROJECT_DIR, 'static'),
+    os.path.join(MODULE_DIR, 'static'),
 )
+
+
 
 
 
@@ -140,11 +142,31 @@ STATICFILES_DIRS = (
 #==============================================================================
 
 TEMPLATE_DIRS = (
-    os.path.join(PROJECT_DIR, 'templates'),
+    os.path.join(MODULE_DIR, 'templates'),
 )
 
 TEMPLATE_CONTEXT_PROCESSORS += (
+    'django.core.context_processors.request',
+    'django.core.context_processors.csrf',
+
 )
+
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(MODULE_DIR, 'templates'),],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
 
 #==============================================================================
 # Middleware

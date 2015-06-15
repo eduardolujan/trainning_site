@@ -11,5 +11,7 @@ urlpatterns = patterns('',
 
 	url(r'^test/?$','apps.trainning.views.test', name='test'),
 	url(r'^login/?$','apps.trainning.views.login', name='login'),
-	
+	url(r'^logout/?$','apps.trainning.views.logout', name='logout'),
+
+	url(r'^trainning/?$','apps.trainning.views.trainning', name='trainning'),
 )
