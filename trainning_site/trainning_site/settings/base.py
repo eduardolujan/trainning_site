@@ -34,7 +34,7 @@ INSTALLED_APPS = (
     'trainning_site.apps.trainning',
 
     #'south',
-
+    'front_edit',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -97,9 +97,13 @@ LIB_DIR = os.path.join(MODULE_DIR, 'lib')
 if not LIB_DIR in sys.path:
     sys.path.insert(3, LIB_DIR)
 
-UPLOADS = os.path.join(PROJECT_DIR, "uploads")
+UPLOADS = os.path.join(MODULE_DIR, "uploads")
 if not LIB_DIR in sys.path:
-    sys.path.insert(3, UPLOADS)
+    sys.path.insert(4, UPLOADS)
+
+TEMPLATES = os.path.join(MODULE_DIR, "templates")
+if not LIB_DIR in sys.path:
+    sys.path.insert(5, TEMPLATES)
 
 
 
@@ -145,26 +149,41 @@ TEMPLATE_DIRS = (
     os.path.join(MODULE_DIR, 'templates'),
 )
 
-TEMPLATE_CONTEXT_PROCESSORS += (
-    'django.core.context_processors.request',
-    'django.core.context_processors.csrf',
 
+
+TEMPLATE_CONTEXT_PROCESSORS += (
+    
+    
 )
+
 
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(MODULE_DIR, 'templates'),],
-        'APP_DIRS': True,
+        #'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.core.context_processors.request',
+                'django.core.context_processors.csrf',
+    
+                'front_edit.context_processors.defer_edit',
             ],
+
+
+            'loaders' : [
+                'django.template.loaders.filesystem.Loader',
+                #'django.template.loaders.app_directories.Loader'
+            ]
         },
+
+        
+
     },
 ]
 

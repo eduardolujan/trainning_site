@@ -12,7 +12,18 @@ from pprint import pprint
 
 
 def test(request):
-	return HttpResponse('Hola')
+	response = {}
+
+	obj = {
+		'text_field':'text_field', 
+		'char_field':'char_field'
+	}
+	response = { 'objects' : [obj,obj] }
+	return render_to_response(
+		'trainning/test.html', 
+		{ 'response':[obj,obj] },
+		context_instance=RequestContext(request)	
+	)
 
 
 @login_required

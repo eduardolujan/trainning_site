@@ -1,0 +1,27 @@
+{% load front_edit_tags %}
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+    <div>
+        <!-- In a list -->
+        <ul>
+            {% for object in objects %}
+            {% edit object.text_field object.char_field "class_name" %}
+            <li>
+                <span>{{ object.text_field }}</span>
+                <span>{{ object.char_field }}</span>
+            </li>
+            {% endedit %}
+            {% endfor %}
+        </ul>
+        <!-- In a table -->
+        
+    </div>
+    <div>
+        <!-- On a span -->
+       
+    </div>
+    {% edit_loader %}
+</body>
+</html>
